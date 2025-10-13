@@ -1,0 +1,27 @@
+title: AVU Wine Campaign Winners
+description: Real-time analytics dashboard for top-performing wine campaigns
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# GitHub Pages settings
+github:
+  repository_name: AVUwinnersCM
+  repository_url: https://github.com/Antagata/AVUwinnersCM
+
+# Site metadata
+author:
+  name: AVU Campaign Intelligence
+  email: campaigns@avu.com
+
+# Navigation
+header_pages:
+  - index.html
+
+# Exclude files
+exclude:
+  - "*.ipynb"
+  - "*.pkl"
+  - "snapshots/"
+  - "__pycache__/"
