@@ -23,7 +23,7 @@ This dashboard shows the top-performing wine campaigns based on:
 - Campaign Statistics: 153 filtered campaigns
 - Stock Data: 4,698 wine items
 - Price Tiers: 5 categories from budget to luxury
-- Last Updated: October 13, 2025 at 18:49:48
+- Last Updated: October 14, 2025 at 08:56:49
 
 ## 🔄 Updates
 Dashboard automatically updates when new data is available.
