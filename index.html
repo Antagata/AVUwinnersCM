@@ -483,6 +483,207 @@
             text-align: right;
             font-family: monospace;
         }
+
+        /* Top 25 Winners Table Styles */
+        .top25-container {
+            padding: 30px;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-top: 3px solid #FFD700;
+            border-bottom: 3px solid #FFD700;
+        }
+
+        .top25-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .top25-header h2 {
+            color: #333;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .top25-subtitle {
+            font-size: 1.1em;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .top25-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8em;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .top25-table th {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: white;
+            padding: 8px 6px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid #B8860B;
+            position: sticky;
+            top: 0;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .top25-table th:hover {
+            background: linear-gradient(135deg, #FFA500, #FFD700);
+        }
+
+        .top25-table th::after {
+            content: " ↕️";
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        .top25-table th.sorted-asc::after {
+            content: " ↑";
+            opacity: 1;
+        }
+
+        .top25-table th.sorted-desc::after {
+            content: " ↓";
+            opacity: 1;
+        }
+
+        .top25-table td {
+            padding: 6px 6px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        .top25-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .top25-table tr:hover {
+            background-color: #fff3cd;
+        }
+
+        .top25-table .rank-cell {
+            text-align: center;
+            font-weight: bold;
+            color: #B8860B;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .top25-table .emoji-cell {
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .top25-table .number-cell {
+            text-align: right;
+            font-family: monospace;
+        }
+
+        /* Race Chart GIF Styles */
+        .race-gif-container {
+            padding: 30px;
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+            color: white;
+        }
+
+        .race-gif-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .race-gif-header h2 {
+            color: #FFD700;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .race-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .race-btn {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .race-btn:hover {
+            background: linear-gradient(135deg, #FFA500, #FFD700);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .race-speed {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        #speedSlider {
+            margin-left: 10px;
+            width: 100px;
+        }
+
+        .race-chart-area {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        #raceCanvas {
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .race-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        .race-date {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #B8860B;
+        }
+
+        .race-legend {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 0.9em;
+        }
+
+        .race-legend span {
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
     </style>
 </head>
 <body>
@@ -504,7 +705,7 @@
             <img src="assets/avu_logo_white.png" alt="AVU Logo" class="logo">
             <h1>🏆 AVU TOP CAMPAIGNS</h1>
             <div class="subtitle">Wine Campaign Winners Dashboard</div>
-            <div class="timestamp">📅 Last Updated: October 14, 2025 at 19:28:32</div>
+            <div class="timestamp">📅 Last Updated: October 14, 2025 at 19:44:27</div>
             <div class="formula-explanation">
                 <strong>🧮 Winner Formula:</strong> Weighted Score = (60% × Conversion Rate) + (40% × Normalized Sales)
                 <br>
@@ -523,6 +724,40 @@
             <!-- Reason Display - Bottom Right -->
             <div class="reason-display">
                 Campaign Performance Analysis
+            </div>
+        </div>
+
+        <!-- Top 25 Winners Table Section -->
+        <div class="top25-container">
+            <div class="top25-header">
+                <h2>🏆 TOP 25 WINE CAMPAIGN WINNERS</h2>
+                <div class="top25-subtitle">🎨 COLOR-CODED BY WINE PRICE</div>
+            </div>
+            <div class="table-wrapper">
+                <table class="top25-table">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(this, 0)" data-type="number">Pos.</th>
+                            <th onclick="sortTable(this, 1)" data-type="text">Campaign</th>
+                            <th onclick="sortTable(this, 2)" data-type="text">🎨</th>
+                            <th onclick="sortTable(this, 3)" data-type="text">Wine</th>
+                            <th onclick="sortTable(this, 4)" data-type="number">Vintage</th>
+                            <th onclick="sortTable(this, 5)" data-type="text">Producer</th>
+                            <th onclick="sortTable(this, 6)" data-type="date">Start Date</th>
+                            <th onclick="sortTable(this, 7)" data-type="text">Multi</th>
+                            <th onclick="sortTable(this, 8)" data-type="number">Sent</th>
+                            <th onclick="sortTable(this, 9)" data-type="number">Buyers</th>
+                            <th onclick="sortTable(this, 10)" data-type="number">Conv. %</th>
+                            <th onclick="sortTable(this, 11)" data-type="text">Sales (CHF)</th>
+                            <th onclick="sortTable(this, 12)" data-type="number">Norm Conv.</th>
+                            <th onclick="sortTable(this, 13)" data-type="number">Norm Sales</th>
+                            <th onclick="sortTable(this, 14)" data-type="number">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="rank-cell">#1</td><td>CM-25-02231</td><td class="emoji-cell">🩷</td><td>Cos d'Estournel</td><td class="number-cell">2021</td><td>Château Cos d'Estournel</td><td>2025-08-29</td><td>Yes</td><td class="number-cell">3,541</td><td class="number-cell">209</td><td class="number-cell">5.90%</td><td class="number-cell">292'386.04</td><td class="number-cell">1.0000</td><td class="number-cell">0.6595</td><td class="number-cell">0.8638</td></tr><tr><td class="rank-cell">#2</td><td>CM-25-02451</td><td class="emoji-cell">💎</td><td>Figeac</td><td class="number-cell">2018</td><td>Château Figeac</td><td>2025-09-16</td><td>Yes</td><td class="number-cell">2,759</td><td class="number-cell">148</td><td class="number-cell">5.36%</td><td class="number-cell">274'386.06</td><td class="number-cell">0.9085</td><td class="number-cell">0.6189</td><td class="number-cell">0.7926</td></tr><tr><td class="rank-cell">#3</td><td>CM-25-02259</td><td class="emoji-cell">🟨</td><td>Masseto</td><td class="number-cell">2022</td><td>Masseto</td><td>2025-09-02</td><td>Yes</td><td class="number-cell">228</td><td class="number-cell">11</td><td class="number-cell">4.82%</td><td class="number-cell">200'839.06</td><td class="number-cell">0.8169</td><td class="number-cell">0.4530</td><td class="number-cell">0.6714</td></tr><tr><td class="rank-cell">#4</td><td>CM-25-02630</td><td class="emoji-cell">🟨</td><td>IX Proprietary Red Estate</td><td class="number-cell">2022</td><td>Colgin Cellars</td><td>2025-10-02</td><td>Yes</td><td class="number-cell">405</td><td class="number-cell">23</td><td class="number-cell">5.68%</td><td class="number-cell">91'099.73</td><td class="number-cell">0.9627</td><td class="number-cell">0.2055</td><td class="number-cell">0.6598</td></tr><tr><td class="rank-cell">#5</td><td>CM-25-02485</td><td class="emoji-cell">💎</td><td>Champagne Extra Brut Gran…</td><td class="number-cell">2022</td><td>Frederic Savart</td><td>2025-09-18</td><td>Yes</td><td class="number-cell">2,085</td><td class="number-cell">102</td><td class="number-cell">4.89%</td><td class="number-cell">152'537.50</td><td class="number-cell">0.8288</td><td class="number-cell">0.3440</td><td class="number-cell">0.6349</td></tr><tr><td class="rank-cell">#6</td><td>CM-25-02394</td><td class="emoji-cell">🟢</td><td>Retout</td><td class="number-cell">2015</td><td>Château du Retout</td><td>2025-09-11</td><td>Yes</td><td class="number-cell">106</td><td class="number-cell">6</td><td class="number-cell">5.66%</td><td class="number-cell">2'298.24</td><td class="number-cell">0.9593</td><td class="number-cell">0.0052</td><td class="number-cell">0.5777</td></tr><tr><td class="rank-cell">#7</td><td>CM-25-02255</td><td class="emoji-cell">🩷</td><td>Galatrona</td><td class="number-cell">2023</td><td>Fattoria Petrolo</td><td>2025-09-02</td><td>Yes</td><td class="number-cell">3,309</td><td class="number-cell">150</td><td class="number-cell">4.53%</td><td class="number-cell">120'766.00</td><td class="number-cell">0.7678</td><td class="number-cell">0.2724</td><td class="number-cell">0.5696</td></tr><tr><td class="rank-cell">#8</td><td>CM-25-02583</td><td class="emoji-cell">🟣</td><td>Cabernet Sauvignon</td><td class="number-cell">2021</td><td>Screaming Eagle Winery</td><td>2025-09-26</td><td>Yes</td><td class="number-cell">152</td><td class="number-cell">7</td><td class="number-cell">4.61%</td><td class="number-cell">98'090.99</td><td class="number-cell">0.7814</td><td class="number-cell">0.2212</td><td class="number-cell">0.5573</td></tr><tr><td class="rank-cell">#9</td><td>CM-25-02625-D</td><td class="emoji-cell">🟨</td><td>El Tamboril Blanco</td><td class="number-cell">2016</td><td>Bodega Comando G</td><td>2025-10-01</td><td>Yes</td><td class="number-cell">170</td><td class="number-cell">8</td><td class="number-cell">4.71%</td><td class="number-cell">33'432.85</td><td class="number-cell">0.7983</td><td class="number-cell">0.0754</td><td class="number-cell">0.5091</td></tr><tr><td class="rank-cell">#10</td><td>CM-25-02321</td><td class="emoji-cell">🟨</td><td>Mouton Rothschild</td><td class="number-cell">2009</td><td>Château Mouton Rothschild</td><td>2025-09-07</td><td>Yes</td><td class="number-cell">1,300</td><td class="number-cell">35</td><td class="number-cell">2.69%</td><td class="number-cell">233'806.92</td><td class="number-cell">0.4559</td><td class="number-cell">0.5274</td><td class="number-cell">0.4845</td></tr><tr><td class="rank-cell">#11</td><td>CM-25-02220</td><td class="emoji-cell">🟨</td><td>Mouton Rothschild</td><td class="number-cell">2016</td><td>Château Mouton Rothschild</td><td>2025-08-28</td><td>Yes</td><td class="number-cell">1,637</td><td class="number-cell">50</td><td class="number-cell">3.05%</td><td class="number-cell">189'311.16</td><td class="number-cell">0.5169</td><td class="number-cell">0.4270</td><td class="number-cell">0.4810</td></tr><tr><td class="rank-cell">#12</td><td>CM-25-02341</td><td class="emoji-cell">🟢</td><td>Retout</td><td class="number-cell">2015</td><td>Château du Retout</td><td>2025-09-08</td><td>Yes</td><td class="number-cell">2,547</td><td class="number-cell">109</td><td class="number-cell">4.28%</td><td class="number-cell">35'803.63</td><td class="number-cell">0.7254</td><td class="number-cell">0.0808</td><td class="number-cell">0.4676</td></tr><tr><td class="rank-cell">#13</td><td>CM-25-02602</td><td class="emoji-cell">💎</td><td>Pavie</td><td class="number-cell">2019</td><td>Château Pavie</td><td>2025-09-29</td><td>Yes</td><td class="number-cell">37,210</td><td class="number-cell">218</td><td class="number-cell">0.59%</td><td class="number-cell">443'359.35</td><td class="number-cell">0.1000</td><td class="number-cell">1.0000</td><td class="number-cell">0.4600</td></tr><tr><td class="rank-cell">#14</td><td>CM-25-02383</td><td class="emoji-cell">🟢</td><td>Retout</td><td class="number-cell">2019</td><td>Château du Retout</td><td>2025-09-11</td><td>Yes</td><td class="number-cell">2,473</td><td class="number-cell">95</td><td class="number-cell">3.84%</td><td class="number-cell">18'804.86</td><td class="number-cell">0.6508</td><td class="number-cell">0.0424</td><td class="number-cell">0.4075</td></tr><tr><td class="rank-cell">#15</td><td>CM-25-02427</td><td class="emoji-cell">💎</td><td>Yjar</td><td class="number-cell">2021</td><td>Telmo Rodríguez</td><td>2025-09-15</td><td>Yes</td><td class="number-cell">1,907</td><td class="number-cell">67</td><td class="number-cell">3.51%</td><td class="number-cell">48'012.73</td><td class="number-cell">0.5949</td><td class="number-cell">0.1083</td><td class="number-cell">0.4003</td></tr><tr><td class="rank-cell">#16</td><td>CM-25-02413</td><td class="emoji-cell">🟣</td><td>Lafite Rothschild</td><td class="number-cell">2010</td><td>Château Lafite Rothschild</td><td>2025-09-12</td><td>Yes</td><td class="number-cell">1,865</td><td class="number-cell">32</td><td class="number-cell">1.72%</td><td class="number-cell">239'380.57</td><td class="number-cell">0.2915</td><td class="number-cell">0.5399</td><td class="number-cell">0.3909</td></tr><tr><td class="rank-cell">#17</td><td>CM-25-02586</td><td class="emoji-cell">💎</td><td>Champagne Dom Pérignon Sp…</td><td class="number-cell">2015</td><td>Dom Pérignon</td><td>2025-09-26</td><td>Yes</td><td class="number-cell">769</td><td class="number-cell">25</td><td class="number-cell">3.25%</td><td class="number-cell">55'037.05</td><td class="number-cell">0.5508</td><td class="number-cell">0.1241</td><td class="number-cell">0.3802</td></tr><tr><td class="rank-cell">#18</td><td>CM-25-02689-D</td><td class="emoji-cell">🩷</td><td>Nuits Saint Georges la Pe…</td><td class="number-cell">2021</td><td>Domaine Gouges Henri</td><td>2025-10-07</td><td>Yes</td><td class="number-cell">135</td><td class="number-cell">5</td><td class="number-cell">3.70%</td><td class="number-cell">3'165.06</td><td class="number-cell">0.6271</td><td class="number-cell">0.0071</td><td class="number-cell">0.3791</td></tr><tr><td class="rank-cell">#19</td><td>CM-25-02637-D</td><td class="emoji-cell">🟨</td><td>Hommage à Jacques Perrin</td><td class="number-cell">2013</td><td>Château de Beaucastel</td><td>2025-10-03</td><td>Yes</td><td class="number-cell">28</td><td class="number-cell">1</td><td class="number-cell">3.57%</td><td class="number-cell">1'587.81</td><td class="number-cell">0.6051</td><td class="number-cell">0.0036</td><td class="number-cell">0.3645</td></tr><tr><td class="rank-cell">#20</td><td>CM-25-02713</td><td class="emoji-cell">🟢</td><td>Siepi</td><td class="number-cell">2019</td><td>Marchesi Mazzei Castello di Fonterutoli</td><td>2025-10-09</td><td>Yes</td><td class="number-cell">265</td><td class="number-cell">9</td><td class="number-cell">3.40%</td><td class="number-cell">5'765.25</td><td class="number-cell">0.5763</td><td class="number-cell">0.0130</td><td class="number-cell">0.3510</td></tr><tr><td class="rank-cell">#21</td><td>CM-25-02777</td><td class="emoji-cell">💎</td><td>La Mission Haut-Brion</td><td class="number-cell">2021</td><td>Château La Mission Haut Brion</td><td>2025-10-13</td><td>Yes</td><td class="number-cell">1,340</td><td class="number-cell">37</td><td class="number-cell">2.76%</td><td class="number-cell">55'647.10</td><td class="number-cell">0.4678</td><td class="number-cell">0.1255</td><td class="number-cell">0.3309</td></tr><tr><td class="rank-cell">#22</td><td>CM-25-02152</td><td class="emoji-cell">🟢</td><td>Aalto</td><td class="number-cell">2022</td><td>Aalto Bodegas y Viñedos</td><td>2025-08-21</td><td>Yes</td><td class="number-cell">2,018</td><td class="number-cell">57</td><td class="number-cell">2.82%</td><td class="number-cell">38'132.51</td><td class="number-cell">0.4780</td><td class="number-cell">0.0860</td><td class="number-cell">0.3212</td></tr><tr><td class="rank-cell">#23</td><td>CM-25-02501</td><td class="emoji-cell">🟢</td><td>Viña Tondonia Reserva</td><td class="number-cell">2012</td><td></td><td>2025-09-19</td><td>Yes</td><td class="number-cell">846</td><td class="number-cell">26</td><td class="number-cell">3.07%</td><td class="number-cell">9'279.04</td><td class="number-cell">0.5203</td><td class="number-cell">0.0209</td><td class="number-cell">0.3206</td></tr><tr><td class="rank-cell">#24</td><td>CM-25-02276</td><td class="emoji-cell">🩷</td><td>Almaviva</td><td class="number-cell">2023</td><td>Baron Philippe de Rothschild and Concha Y Toro</td><td>2025-09-03</td><td>Yes</td><td class="number-cell">1,377</td><td class="number-cell">36</td><td class="number-cell">2.61%</td><td class="number-cell">29'671.82</td><td class="number-cell">0.4424</td><td class="number-cell">0.0669</td><td class="number-cell">0.2922</td></tr><tr><td class="rank-cell">#25</td><td>CM-25-02598</td><td class="emoji-cell">🟣</td><td>Barolo Monfortino Riserva</td><td class="number-cell">2010</td><td>Giacomo Conterno</td><td>2025-09-28</td><td>Yes</td><td class="number-cell">478</td><td class="number-cell">10</td><td class="number-cell">2.09%</td><td class="number-cell">82'215.29</td><td class="number-cell">0.3542</td><td class="number-cell">0.1854</td><td class="number-cell">0.2867</td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -654,7 +889,35 @@
                 </div>
             </div>
             <p>🍷 Wine Campaign Analysis Dashboard</p>
-            <p>🟨 Golden bars represent top-performing campaigns | Generated: October 14, 2025 at 19:28:32</p>
+            <p>🟨 Golden bars represent top-performing campaigns | Generated: October 14, 2025 at 19:44:27</p>
+        </div>
+
+        <!-- Race Chart GIF Section -->
+        <div class="race-gif-container">
+            <div class="race-gif-header">
+                <h2>🏁 ANIMATED RACE CHART</h2>
+                <div class="race-controls">
+                    <button onclick="playRaceChart()" class="race-btn play-btn">▶️ Play Animation</button>
+                    <button onclick="pauseRaceChart()" class="race-btn pause-btn">⏸️ Pause</button>
+                    <button onclick="resetRaceChart()" class="race-btn reset-btn">🔄 Reset</button>
+                    <span class="race-speed">
+                        Speed: <input type="range" id="speedSlider" min="100" max="2000" value="800" onchange="updateSpeed()">
+                    </span>
+                </div>
+            </div>
+            <div class="race-chart-area">
+                <canvas id="raceCanvas" width="1200" height="600"></canvas>
+                <div class="race-info">
+                    <div id="currentDate" class="race-date">Select Play to start animation</div>
+                    <div class="race-legend">
+                        <span>🟣 Extra Luxury</span>
+                        <span>🟨 Luxury</span>
+                        <span>💎 Premium</span>
+                        <span>🩷 Mid-range</span>
+                        <span>🟢 Budget</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -833,6 +1096,155 @@
                 header.style.backgroundColor = '';
             }, 200);
         }
+
+        // Race Chart Animation Functionality
+        let raceData = [];
+        let currentFrame = 0;
+        let isPlaying = false;
+        let animationSpeed = 800;
+        let animationInterval;
+
+        // Sample race data (will be populated with actual data)
+        const sampleRaceData = [
+            {
+                date: "2024-01-01",
+                winners: [
+                    {"name": "Cos d'Estournel", "score": 0.8638, "color": "#8B5CF6"},
+                    {"name": "Siepi", "score": 0.7245, "color": "#F59E0B"},
+                    {"name": "Ornellaia", "score": 0.6832, "color": "#3B82F6"},
+                    {"name": "Sassicaia", "score": 0.6421, "color": "#EC4899"},
+                    {"name": "Tignanello", "score": 0.6105, "color": "#10B981"}
+                ]
+            },
+            {
+                date: "2024-02-01",
+                winners: [
+                    {"name": "Cos d'Estournel", "score": 0.8745, "color": "#8B5CF6"},
+                    {"name": "Ornellaia", "score": 0.7156, "color": "#3B82F6"},
+                    {"name": "Siepi", "score": 0.7023, "color": "#F59E0B"},
+                    {"name": "Sassicaia", "score": 0.6534, "color": "#EC4899"},
+                    {"name": "Tignanello", "score": 0.6278, "color": "#10B981"}
+                ]
+            }
+        ];
+
+        function initializeRaceChart() {
+            const canvas = document.getElementById('raceCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Set canvas size
+            canvas.width = 1200;
+            canvas.height = 600;
+
+            raceData = sampleRaceData; // Use sample data for now
+            drawRaceFrame(0);
+        }
+
+        function drawRaceFrame(frameIndex) {
+            const canvas = document.getElementById('raceCanvas');
+            const ctx = canvas.getContext('2d');
+
+            if (!raceData[frameIndex]) return;
+
+            const data = raceData[frameIndex];
+            const winners = data.winners.slice(0, 10); // Top 10
+
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Set up dimensions
+            const margin = { top: 60, right: 50, bottom: 80, left: 200 };
+            const chartWidth = canvas.width - margin.left - margin.right;
+            const chartHeight = canvas.height - margin.top - margin.bottom;
+            const barHeight = chartHeight / winners.length;
+
+            // Draw title
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('🏁 Wine Campaign Race Chart', canvas.width / 2, 30);
+
+            // Draw date
+            ctx.font = '18px Arial';
+            ctx.fillStyle = '#666';
+            ctx.fillText(data.date, canvas.width / 2, 55);
+
+            // Find max score for scaling
+            const maxScore = Math.max(...winners.map(w => w.score));
+
+            // Draw bars and labels
+            winners.forEach((winner, i) => {
+                const y = margin.top + i * barHeight;
+                const barWidth = (winner.score / maxScore) * chartWidth;
+
+                // Draw bar
+                ctx.fillStyle = winner.color;
+                ctx.fillRect(margin.left, y + barHeight * 0.1, barWidth, barHeight * 0.8);
+
+                // Draw wine name
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 16px Arial';
+                ctx.textAlign = 'right';
+                ctx.fillText(winner.name, margin.left - 10, y + barHeight * 0.6);
+
+                // Draw score
+                ctx.textAlign = 'left';
+                ctx.fillStyle = '#fff';
+                ctx.fillText(winner.score.toFixed(4), margin.left + barWidth + 10, y + barHeight * 0.6);
+
+                // Draw rank
+                ctx.fillStyle = '#FFD700';
+                ctx.font = 'bold 20px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(`#${i + 1}`, margin.left - 60, y + barHeight * 0.6);
+            });
+
+            // Update date display
+            document.getElementById('currentDate').textContent = `Current: ${data.date}`;
+        }
+
+        function playRaceChart() {
+            if (isPlaying) return;
+
+            isPlaying = true;
+            animationInterval = setInterval(() => {
+                currentFrame = (currentFrame + 1) % raceData.length;
+                drawRaceFrame(currentFrame);
+
+                if (currentFrame === 0 && raceData.length > 1) {
+                    // Reset to beginning
+                    setTimeout(() => {
+                        if (isPlaying) drawRaceFrame(0);
+                    }, animationSpeed);
+                }
+            }, animationSpeed);
+        }
+
+        function pauseRaceChart() {
+            isPlaying = false;
+            clearInterval(animationInterval);
+        }
+
+        function resetRaceChart() {
+            pauseRaceChart();
+            currentFrame = 0;
+            drawRaceFrame(0);
+        }
+
+        function updateSpeed() {
+            const slider = document.getElementById('speedSlider');
+            animationSpeed = parseInt(slider.value);
+
+            if (isPlaying) {
+                pauseRaceChart();
+                playRaceChart();
+            }
+        }
+
+        // Initialize race chart when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(initializeRaceChart, 500); // Wait for canvas to be ready
+        });
     </script>
 </body>
 </html>
