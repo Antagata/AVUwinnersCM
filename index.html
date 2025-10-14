@@ -154,6 +154,29 @@
             display: inline-block;
         }
 
+        .formula-explanation {
+            margin: 10px 0;
+            font-size: 0.9em;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 10px 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(5px);
+            color: #333;
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .formula-explanation strong {
+            color: #B8860B;
+        }
+
+        .formula-explanation small {
+            opacity: 0.8;
+        }
+
         .rotate-button {
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
@@ -396,22 +419,47 @@
         .winners-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85em;
+            font-size: 0.75em;
         }
 
         .winners-table th {
             background: #f8f9fa;
-            padding: 12px 8px;
+            padding: 6px 4px;
             text-align: left;
             font-weight: bold;
             color: #333;
             border-bottom: 2px solid #ddd;
             position: sticky;
             top: 0;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+
+        .winners-table th:hover {
+            background: #e9ecef;
+        }
+
+        .winners-table th::after {
+            content: " ↕️";
+            font-size: 0.8em;
+            opacity: 0.5;
+        }
+
+        .winners-table th.sorted-asc::after {
+            content: " ↑";
+            opacity: 1;
+            color: #28a745;
+        }
+
+        .winners-table th.sorted-desc::after {
+            content: " ↓";
+            opacity: 1;
+            color: #dc3545;
         }
 
         .winners-table td {
-            padding: 10px 8px;
+            padding: 6px 4px;
             border-bottom: 1px solid #eee;
             vertical-align: middle;
         }
@@ -456,7 +504,12 @@
             <img src="assets/avu_logo_white.png" alt="AVU Logo" class="logo">
             <h1>🏆 AVU TOP CAMPAIGNS</h1>
             <div class="subtitle">Wine Campaign Winners Dashboard</div>
-            <div class="timestamp">📅 Last Updated: October 14, 2025 at 18:52:09</div>
+            <div class="timestamp">📅 Last Updated: October 14, 2025 at 19:28:32</div>
+            <div class="formula-explanation">
+                <strong>🧮 Winner Formula:</strong> Weighted Score = (60% × Conversion Rate) + (40% × Normalized Sales)
+                <br>
+                <small>💡 Conversion Rate = (Unique Buyers ÷ Email Recipients) × 100% | Sales normalized 0-1 scale</small>
+            </div>
             <button class="rotate-button" onclick="rotateCharts()">🔄 Rotate Charts</button>
 
             <!-- Tag Icons - Bottom Left -->
@@ -532,7 +585,7 @@
             <div class="table-wrapper">
                 <table class="winners-table">
                     <thead>
-                        <tr><th>Rank</th><th>Campaign</th><th>Wine</th><th>Vintage</th><th>Producer</th><th>Starting_Date</th><th>Sales (CHF)</th><th>Unique Buyers</th><th>Conv. %</th><th>Score</th><th>Item No.</th><th>Overall Pos.</th>
+                        <tr><th onclick="sortTable(this, 0)" data-type="number">Rank</th><th onclick="sortTable(this, 3)" data-type="text">Campaign</th><th onclick="sortTable(this, 4)" data-type="text">Wine</th><th onclick="sortTable(this, 5)" data-type="number">Vintage</th><th onclick="sortTable(this, 6)" data-type="text">Producer</th><th onclick="sortTable(this, 7)" data-type="date">Start Date</th><th onclick="sortTable(this, 8)" data-type="number">Sales (CHF)</th><th onclick="sortTable(this, 9)" data-type="number">Unique Buyers</th><th onclick="sortTable(this, 10)" data-type="number">Conv. %</th><th onclick="sortTable(this, 11)" data-type="number">Score</th><th onclick="sortTable(this, 13)" data-type="number">Item No.</th><th onclick="sortTable(this, 14)" data-type="number">Overall Pos.</th>
                         </tr>
                     </thead>
                     <tbody><tr><td class="rank-cell">#1</td><td>CM-25-02713</td><td>Siepi</td><td>2019</td><td>Marchesi Mazzei Castello di Fonterutoli</td><td>2025-10-09</td><td>5'765.25</td><td>9</td><td class="number-cell">3.4</td><td class="number-cell">0.351</td><td>54636</td><td>20</td></tr><tr><td class="rank-cell">#2</td><td>CM-25-02777</td><td>La Mission Haut-Brion</td><td>2021</td><td>Château La Mission Haut Brion</td><td>2025-10-13</td><td>55'647.10</td><td>37</td><td class="number-cell">2.76</td><td class="number-cell">0.3309</td><td>55704</td><td>21</td></tr><tr><td class="rank-cell">#3</td><td>CM-25-02750</td><td>Pavie Macquin</td><td>2020</td><td>Château Pavie Macquin</td><td>2025-10-11</td><td>25'939.36</td><td>28</td><td class="number-cell">2.21</td><td class="number-cell">0.2481</td><td>53983</td><td>33</td></tr><tr><td class="rank-cell">#4</td><td>CM-25-02734</td><td>La Mission Haut-Brion</td><td>2021</td><td>Château La Mission Haut Brion</td><td>2025-10-09</td><td>89'301.78</td><td>47</td><td class="number-cell">1.55</td><td class="number-cell">0.2382</td><td>55704</td><td>35</td></tr><tr><td class="rank-cell">#5</td><td>CM-25-02729</td><td>Palmer Historical XIX L. 20.21</td><td></td><td>Château Palmer</td><td>2025-10-10</td><td>7'880.59</td><td>9</td><td class="number-cell">2.1</td><td class="number-cell">0.2207</td><td>60084</td><td>38</td></tr><tr><td class="rank-cell">#6</td><td>CM-25-02716</td><td>Léoville Las Cases</td><td>2010</td><td>Château Léoville Las Cases</td><td>2025-10-08</td><td>65'709.79</td><td>34</td><td class="number-cell">1.51</td><td class="number-cell">0.2128</td><td>2257</td><td>40</td></tr><tr><td class="rank-cell">#7</td><td>CM-25-02747</td><td>Meyney</td><td>2018</td><td>Château Meyney</td><td>2025-10-12</td><td>7'018.07</td><td>26</td><td class="number-cell">2.01</td><td class="number-cell">0.2107</td><td>49414</td><td>41</td></tr><tr><td class="rank-cell">#8</td><td>CM-25-02743</td><td>Quintus</td><td>2020</td><td>Château Quintus</td><td>2025-10-10</td><td>23'351.39</td><td>38</td><td class="number-cell">1.75</td><td class="number-cell">0.199</td><td>65331</td><td>44</td></tr><tr><td class="rank-cell">#9</td><td>CM-25-02759</td><td>Dominus</td><td>2016</td><td>Dominus Estate</td><td>2025-10-13</td><td>85'459.67</td><td>37</td><td class="number-cell">1.19</td><td class="number-cell">0.1981</td><td>49782</td><td>46</td></tr><tr><td class="rank-cell">#10</td><td>CM-25-02739</td><td>Larrivet Haut Brion Rouge</td><td>2018</td><td>Château Larrivet Haut-Brion</td><td>2025-10-09</td><td>5'403.52</td><td>21</td><td class="number-cell">1.82</td><td class="number-cell">0.19</td><td>65368</td><td>49</td></tr>
@@ -545,7 +598,7 @@
             <div class="table-wrapper">
                 <table class="winners-table">
                     <thead>
-                        <tr><th>Rank</th><th>Campaign</th><th>Wine</th><th>Vintage</th><th>Producer</th><th>Starting_Date</th><th>Sales (CHF)</th><th>Unique Buyers</th><th>Conv. %</th><th>Score</th><th>Item No.</th><th>Overall Pos.</th>
+                        <tr><th onclick="sortTable(this, 0)" data-type="number">Rank</th><th onclick="sortTable(this, 3)" data-type="text">Campaign</th><th onclick="sortTable(this, 4)" data-type="text">Wine</th><th onclick="sortTable(this, 5)" data-type="number">Vintage</th><th onclick="sortTable(this, 6)" data-type="text">Producer</th><th onclick="sortTable(this, 7)" data-type="date">Start Date</th><th onclick="sortTable(this, 8)" data-type="number">Sales (CHF)</th><th onclick="sortTable(this, 9)" data-type="number">Unique Buyers</th><th onclick="sortTable(this, 10)" data-type="number">Conv. %</th><th onclick="sortTable(this, 11)" data-type="number">Score</th><th onclick="sortTable(this, 13)" data-type="number">Item No.</th><th onclick="sortTable(this, 14)" data-type="number">Overall Pos.</th>
                         </tr>
                     </thead>
                     <tbody><tr><td class="rank-cell">#1</td><td>CM-25-02630</td><td>IX Proprietary Red Estate</td><td>2022</td><td>Colgin Cellars</td><td>2025-10-02</td><td>91'099.73</td><td>23</td><td class="number-cell">5.68</td><td class="number-cell">0.6598</td><td>63171</td><td>4</td></tr><tr><td class="rank-cell">#2</td><td>CM-25-02625</td><td>El Tamboril Blanco</td><td>2016</td><td>Bodega Comando G</td><td>2025-10-01</td><td>33'432.85</td><td>8</td><td class="number-cell">4.71</td><td class="number-cell">0.5091</td><td>65647</td><td>9</td></tr><tr><td class="rank-cell">#3</td><td>CM-25-02689</td><td>Nuits Saint Georges la Perrière</td><td>2021</td><td>Domaine Gouges Henri</td><td>2025-10-07</td><td>3'165.06</td><td>5</td><td class="number-cell">3.7</td><td class="number-cell">0.3791</td><td>64885</td><td>18</td></tr><tr><td class="rank-cell">#4</td><td>CM-25-02637</td><td>Hommage à Jacques Perrin</td><td>2013</td><td>Château de Beaucastel</td><td>2025-10-03</td><td>1'587.81</td><td>1</td><td class="number-cell">3.57</td><td class="number-cell">0.3645</td><td>32234</td><td>19</td></tr><tr><td class="rank-cell">#5</td><td>CM-25-02713</td><td>Siepi</td><td>2019</td><td>Marchesi Mazzei Castello di Fonterutoli</td><td>2025-10-09</td><td>5'765.25</td><td>9</td><td class="number-cell">3.4</td><td class="number-cell">0.351</td><td>54636</td><td>20</td></tr><tr><td class="rank-cell">#6</td><td>CM-25-02777</td><td>La Mission Haut-Brion</td><td>2021</td><td>Château La Mission Haut Brion</td><td>2025-10-13</td><td>55'647.10</td><td>37</td><td class="number-cell">2.76</td><td class="number-cell">0.3309</td><td>55704</td><td>21</td></tr><tr><td class="rank-cell">#7</td><td>CM-25-02645</td><td>Clos Haut Peyraguey</td><td>2017</td><td>Clos Haut-Peyraguey</td><td>2025-10-03</td><td>3'152.67</td><td>8</td><td class="number-cell">2.67</td><td class="number-cell">0.2744</td><td>45585</td><td>27</td></tr><tr><td class="rank-cell">#8</td><td>CM-25-02628</td><td>Grillet Blanc</td><td>2019</td><td>Château Grillet</td><td>2025-10-02</td><td>8'764.82</td><td>5</td><td class="number-cell">2.54</td><td class="number-cell">0.2662</td><td>62552</td><td>29</td></tr><tr><td class="rank-cell">#9</td><td>CM-25-02688</td><td>Saffredi</td><td>2021</td><td>Fattoria le Pupille</td><td>2025-10-07</td><td>31'993.42</td><td>40</td><td class="number-cell">2.19</td><td class="number-cell">0.2516</td><td>59276</td><td>32</td></tr><tr><td class="rank-cell">#10</td><td>CM-25-02750</td><td>Pavie Macquin</td><td>2020</td><td>Château Pavie Macquin</td><td>2025-10-11</td><td>25'939.36</td><td>28</td><td class="number-cell">2.21</td><td class="number-cell">0.2481</td><td>53983</td><td>33</td></tr>
@@ -558,7 +611,7 @@
             <div class="table-wrapper">
                 <table class="winners-table">
                     <thead>
-                        <tr><th>Rank</th><th>Campaign</th><th>Wine</th><th>Vintage</th><th>Producer</th><th>Starting_Date</th><th>Sales (CHF)</th><th>Unique Buyers</th><th>Conv. %</th><th>Score</th><th>Item No.</th><th>Overall Pos.</th>
+                        <tr><th onclick="sortTable(this, 0)" data-type="number">Rank</th><th onclick="sortTable(this, 3)" data-type="text">Campaign</th><th onclick="sortTable(this, 4)" data-type="text">Wine</th><th onclick="sortTable(this, 5)" data-type="number">Vintage</th><th onclick="sortTable(this, 6)" data-type="text">Producer</th><th onclick="sortTable(this, 7)" data-type="date">Start Date</th><th onclick="sortTable(this, 8)" data-type="number">Sales (CHF)</th><th onclick="sortTable(this, 9)" data-type="number">Unique Buyers</th><th onclick="sortTable(this, 10)" data-type="number">Conv. %</th><th onclick="sortTable(this, 11)" data-type="number">Score</th><th onclick="sortTable(this, 13)" data-type="number">Item No.</th><th onclick="sortTable(this, 14)" data-type="number">Overall Pos.</th>
                         </tr>
                     </thead>
                     <tbody><tr><td class="rank-cell">#1</td><td>CM-25-02630</td><td>IX Proprietary Red Estate</td><td>2022</td><td>Colgin Cellars</td><td>2025-10-02</td><td>91'099.73</td><td>23</td><td class="number-cell">5.68</td><td class="number-cell">0.6598</td><td>63171</td><td>4</td></tr><tr><td class="rank-cell">#2</td><td>CM-25-02583</td><td>Cabernet Sauvignon</td><td>2021</td><td>Screaming Eagle Winery</td><td>2025-09-26</td><td>98'090.99</td><td>7</td><td class="number-cell">4.61</td><td class="number-cell">0.5573</td><td>62292</td><td>8</td></tr><tr><td class="rank-cell">#3</td><td>CM-25-02625</td><td>El Tamboril Blanco</td><td>2016</td><td>Bodega Comando G</td><td>2025-10-01</td><td>33'432.85</td><td>8</td><td class="number-cell">4.71</td><td class="number-cell">0.5091</td><td>65647</td><td>9</td></tr><tr><td class="rank-cell">#4</td><td>CM-25-02602</td><td>Pavie</td><td>2019</td><td>Château Pavie</td><td>2025-09-29</td><td>443'359.35</td><td>218</td><td class="number-cell">0.59</td><td class="number-cell">0.46</td><td>51417</td><td>13</td></tr><tr><td class="rank-cell">#5</td><td>CM-25-02586</td><td>Champagne Dom Pérignon Special Edition Takashi Murakami</td><td>2015</td><td>Dom Pérignon</td><td>2025-09-26</td><td>55'037.05</td><td>25</td><td class="number-cell">3.25</td><td class="number-cell">0.3802</td><td>65703</td><td>17</td></tr><tr><td class="rank-cell">#6</td><td>CM-25-02689</td><td>Nuits Saint Georges la Perrière</td><td>2021</td><td>Domaine Gouges Henri</td><td>2025-10-07</td><td>3'165.06</td><td>5</td><td class="number-cell">3.7</td><td class="number-cell">0.3791</td><td>64885</td><td>18</td></tr><tr><td class="rank-cell">#7</td><td>CM-25-02637</td><td>Hommage à Jacques Perrin</td><td>2013</td><td>Château de Beaucastel</td><td>2025-10-03</td><td>1'587.81</td><td>1</td><td class="number-cell">3.57</td><td class="number-cell">0.3645</td><td>32234</td><td>19</td></tr><tr><td class="rank-cell">#8</td><td>CM-25-02713</td><td>Siepi</td><td>2019</td><td>Marchesi Mazzei Castello di Fonterutoli</td><td>2025-10-09</td><td>5'765.25</td><td>9</td><td class="number-cell">3.4</td><td class="number-cell">0.351</td><td>54636</td><td>20</td></tr><tr><td class="rank-cell">#9</td><td>CM-25-02777</td><td>La Mission Haut-Brion</td><td>2021</td><td>Château La Mission Haut Brion</td><td>2025-10-13</td><td>55'647.10</td><td>37</td><td class="number-cell">2.76</td><td class="number-cell">0.3309</td><td>55704</td><td>21</td></tr><tr><td class="rank-cell">#10</td><td>CM-25-02598</td><td>Barolo Monfortino Riserva</td><td>2010</td><td>Giacomo Conterno</td><td>2025-09-28</td><td>82'215.29</td><td>10</td><td class="number-cell">2.09</td><td class="number-cell">0.2867</td><td>43770</td><td>25</td></tr>
@@ -571,7 +624,7 @@
             <div class="table-wrapper">
                 <table class="winners-table">
                     <thead>
-                        <tr><th>Rank</th><th>Campaign</th><th>Wine</th><th>Vintage</th><th>Producer</th><th>Starting_Date</th><th>Sales (CHF)</th><th>Unique Buyers</th><th>Conv. %</th><th>Score</th><th>Item No.</th><th>Overall Pos.</th>
+                        <tr><th onclick="sortTable(this, 0)" data-type="number">Rank</th><th onclick="sortTable(this, 3)" data-type="text">Campaign</th><th onclick="sortTable(this, 4)" data-type="text">Wine</th><th onclick="sortTable(this, 5)" data-type="number">Vintage</th><th onclick="sortTable(this, 6)" data-type="text">Producer</th><th onclick="sortTable(this, 7)" data-type="date">Start Date</th><th onclick="sortTable(this, 8)" data-type="number">Sales (CHF)</th><th onclick="sortTable(this, 9)" data-type="number">Unique Buyers</th><th onclick="sortTable(this, 10)" data-type="number">Conv. %</th><th onclick="sortTable(this, 11)" data-type="number">Score</th><th onclick="sortTable(this, 13)" data-type="number">Item No.</th><th onclick="sortTable(this, 14)" data-type="number">Overall Pos.</th>
                         </tr>
                     </thead>
                     <tbody><tr><td class="rank-cell">#1</td><td>CM-25-02451</td><td>Figeac</td><td>2018</td><td>Château Figeac</td><td>2025-09-16</td><td>274'386.06</td><td>148</td><td class="number-cell">5.36</td><td class="number-cell">0.7926</td><td>48976</td><td>2</td></tr><tr><td class="rank-cell">#2</td><td>CM-25-02630</td><td>IX Proprietary Red Estate</td><td>2022</td><td>Colgin Cellars</td><td>2025-10-02</td><td>91'099.73</td><td>23</td><td class="number-cell">5.68</td><td class="number-cell">0.6598</td><td>63171</td><td>4</td></tr><tr><td class="rank-cell">#3</td><td>CM-25-02485</td><td>Champagne Extra Brut Grand Cru Le Mesnil</td><td>2022</td><td>Frederic Savart</td><td>2025-09-18</td><td>152'537.50</td><td>102</td><td class="number-cell">4.89</td><td class="number-cell">0.6349</td><td>65596</td><td>5</td></tr><tr><td class="rank-cell">#4</td><td>CM-25-02583</td><td>Cabernet Sauvignon</td><td>2021</td><td>Screaming Eagle Winery</td><td>2025-09-26</td><td>98'090.99</td><td>7</td><td class="number-cell">4.61</td><td class="number-cell">0.5573</td><td>62292</td><td>8</td></tr><tr><td class="rank-cell">#5</td><td>CM-25-02625</td><td>El Tamboril Blanco</td><td>2016</td><td>Bodega Comando G</td><td>2025-10-01</td><td>33'432.85</td><td>8</td><td class="number-cell">4.71</td><td class="number-cell">0.5091</td><td>65647</td><td>9</td></tr><tr><td class="rank-cell">#6</td><td>CM-25-02602</td><td>Pavie</td><td>2019</td><td>Château Pavie</td><td>2025-09-29</td><td>443'359.35</td><td>218</td><td class="number-cell">0.59</td><td class="number-cell">0.46</td><td>51417</td><td>13</td></tr><tr><td class="rank-cell">#7</td><td>CM-25-02427</td><td>Yjar</td><td>2021</td><td>Telmo Rodríguez</td><td>2025-09-15</td><td>48'012.73</td><td>67</td><td class="number-cell">3.51</td><td class="number-cell">0.4003</td><td>65509</td><td>15</td></tr><tr><td class="rank-cell">#8</td><td>CM-25-02586</td><td>Champagne Dom Pérignon Special Edition Takashi Murakami</td><td>2015</td><td>Dom Pérignon</td><td>2025-09-26</td><td>55'037.05</td><td>25</td><td class="number-cell">3.25</td><td class="number-cell">0.3802</td><td>65703</td><td>17</td></tr><tr><td class="rank-cell">#9</td><td>CM-25-02689</td><td>Nuits Saint Georges la Perrière</td><td>2021</td><td>Domaine Gouges Henri</td><td>2025-10-07</td><td>3'165.06</td><td>5</td><td class="number-cell">3.7</td><td class="number-cell">0.3791</td><td>64885</td><td>18</td></tr><tr><td class="rank-cell">#10</td><td>CM-25-02637</td><td>Hommage à Jacques Perrin</td><td>2013</td><td>Château de Beaucastel</td><td>2025-10-03</td><td>1'587.81</td><td>1</td><td class="number-cell">3.57</td><td class="number-cell">0.3645</td><td>32234</td><td>19</td></tr>
@@ -601,7 +654,7 @@
                 </div>
             </div>
             <p>🍷 Wine Campaign Analysis Dashboard</p>
-            <p>🟨 Golden bars represent top-performing campaigns | Generated: October 14, 2025 at 18:52:09</p>
+            <p>🟨 Golden bars represent top-performing campaigns | Generated: October 14, 2025 at 19:28:32</p>
         </div>
     </div>
 
@@ -719,6 +772,67 @@
                 });
             });
         });
+
+        // Table sorting functionality
+        function sortTable(header, columnIndex) {
+            const table = header.closest('table');
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            const dataType = header.getAttribute('data-type');
+
+            // Determine sort direction
+            let ascending = true;
+            if (header.classList.contains('sorted-asc')) {
+                ascending = false;
+            }
+
+            // Clear all sorting classes
+            table.querySelectorAll('th').forEach(th => {
+                th.classList.remove('sorted-asc', 'sorted-desc');
+            });
+
+            // Add appropriate class to current header
+            header.classList.add(ascending ? 'sorted-asc' : 'sorted-desc');
+
+            // Sort rows
+            rows.sort((rowA, rowB) => {
+                let cellA = rowA.children[columnIndex];
+                let cellB = rowB.children[columnIndex];
+
+                if (!cellA || !cellB) return 0;
+
+                let valueA = cellA.textContent.trim();
+                let valueB = cellB.textContent.trim();
+
+                // Handle different data types
+                if (dataType === 'number') {
+                    // Remove formatting for numbers
+                    valueA = parseFloat(valueA.replace(/[^0-9.-]/g, '')) || 0;
+                    valueB = parseFloat(valueB.replace(/[^0-9.-]/g, '')) || 0;
+                    return ascending ? valueA - valueB : valueB - valueA;
+                } else if (dataType === 'date') {
+                    valueA = new Date(valueA);
+                    valueB = new Date(valueB);
+                    return ascending ? valueA - valueB : valueB - valueA;
+                } else {
+                    // Text comparison
+                    valueA = valueA.toLowerCase();
+                    valueB = valueB.toLowerCase();
+                    if (valueA < valueB) return ascending ? -1 : 1;
+                    if (valueA > valueB) return ascending ? 1 : -1;
+                    return 0;
+                }
+            });
+
+            // Re-append sorted rows
+            rows.forEach(row => tbody.appendChild(row));
+
+            // Add visual feedback
+            header.style.backgroundColor = '#e9ecef';
+            setTimeout(() => {
+                header.style.backgroundColor = '';
+            }, 200);
+        }
     </script>
 </body>
 </html>
