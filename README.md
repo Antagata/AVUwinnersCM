@@ -14,8 +14,10 @@ This dashboard shows the top-performing wine campaigns based on:
 
 ## 🎯 Features
 - **Real-time Analytics**: Top selling campaigns
+- **Animated Race Chart**: Historical data progression with play/pause controls
 - **Period Comparisons**: Last 7/21 days vs Overall
 - **Stock Integration**: Live inventory status
+- **Interactive Sorting**: Sort tables by any column
 - **Mobile Responsive**: Works on all devices
 - **Network Sharing**: Team accessible
 
@@ -23,7 +25,7 @@ This dashboard shows the top-performing wine campaigns based on:
 - Campaign Statistics: 153 filtered campaigns
 - Stock Data: 4,698 wine items
 - Price Tiers: 5 categories from budget to luxury
-- Last Updated: October 14, 2025 at 08:56:49
+- Last Updated: October 16, 2025
 
 ## 🔄 Updates
 Dashboard automatically updates when new data is available.
