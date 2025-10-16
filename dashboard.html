@@ -706,7 +706,7 @@
             <img src="assets/avu_logo_white.png" alt="AVU Logo" class="logo">
             <h1>🏆 AVU TOP CAMPAIGNS</h1>
             <div class="subtitle">Wine Campaign Winners Dashboard</div>
-            <div class="timestamp">📅 Last Updated: October 16, 2025 at 08:41:09</div>
+            <div class="timestamp">📅 Last Updated: October 16, 2025 at 09:16:32</div>
             <div class="formula-explanation">
                 <strong>🧮 Winner Formula:</strong> Weighted Score = (60% × Conversion Rate) + (40% × Normalized Sales)
                 <br>
@@ -891,26 +891,18 @@
                 </div>
             </div>
             <p>🍷 Wine Campaign Analysis Dashboard</p>
-            <p>🟨 Golden bars represent top-performing campaigns | Generated: October 16, 2025 at 08:41:09</p>
+            <p>🟨 Golden bars represent top-performing campaigns | Generated: October 16, 2025 at 09:16:32</p>
         </div>
         
         <!-- Race Chart GIF Section -->
         <div class="race-gif-container">
             <div class="race-gif-header">
-                <h2>🏁 ANIMATED RACE CHART</h2>
-                <div class="race-controls">
-                    <button onclick="playRaceChart()" class="race-btn play-btn">▶️ Play Animation</button>
-                    <button onclick="pauseRaceChart()" class="race-btn pause-btn">⏸️ Pause</button>
-                    <button onclick="resetRaceChart()" class="race-btn reset-btn">🔄 Reset</button>
-                    <span class="race-speed">
-                        Speed: <input type="range" id="speedSlider" min="100" max="2000" value="800" onchange="updateSpeed()">
-                    </span>
-                </div>
+                <h2>🏁 OVERALL WINNERS RACE CHART</h2>
             </div>
             <div class="race-chart-area">
                 <canvas id="raceCanvas" width="1200" height="600"></canvas>
                 <div class="race-info">
-                    <div id="currentDate" class="race-date">Select Play to start animation</div>
+                    <div id="currentDate" class="race-date">Final Rankings - Overall Winners</div>
                     <div class="race-legend">
                         <span>🟣 Extra Luxury</span>
                         <span>🟨 Luxury</span>
@@ -1133,13 +1125,19 @@
         function initializeRaceChart() {
             const canvas = document.getElementById('raceCanvas');
             const ctx = canvas.getContext('2d');
-            
+
             // Set canvas size
             canvas.width = 1200;
             canvas.height = 600;
-            
-            raceData = sampleRaceData; // Use sample data for now
-            drawRaceFrame(0);
+
+            // Get LAST snapshot only
+            if (sampleRaceData && sampleRaceData.length > 0) {
+                const lastSnapshot = sampleRaceData[sampleRaceData.length - 1];
+                // Set ALL colors to GOLD
+                lastSnapshot.winners.forEach(w => w.color = '#D4AF37');
+                raceData = [lastSnapshot]; // Single snapshot
+                drawRaceFrame(0);
+            }
         }
         
         function drawRaceFrame(frameIndex) {
@@ -1149,7 +1147,7 @@
             if (!raceData[frameIndex]) return;
             
             const data = raceData[frameIndex];
-            const winners = data.winners.slice(0, 10); // Top 10
+            const winners = data.winners.slice(0, 15); // Top 15
             
             // Clear canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1201,46 +1199,23 @@
                 ctx.fillText(`#${i + 1}`, margin.left - 60, y + barHeight * 0.6);
             });
             
-            // Update date display
-            document.getElementById('currentDate').textContent = `Current: ${data.date}`;
+            // Static display - no date update needed
         }
         
         function playRaceChart() {
-            if (isPlaying) return;
-            
-            isPlaying = true;
-            animationInterval = setInterval(() => {
-                currentFrame = (currentFrame + 1) % raceData.length;
-                drawRaceFrame(currentFrame);
-                
-                if (currentFrame === 0 && raceData.length > 1) {
-                    // Reset to beginning
-                    setTimeout(() => {
-                        if (isPlaying) drawRaceFrame(0);
-                    }, animationSpeed);
-                }
-            }, animationSpeed);
+            // Disabled - no animation
         }
-        
+
         function pauseRaceChart() {
-            isPlaying = false;
-            clearInterval(animationInterval);
+            // Disabled - no animation
         }
-        
+
         function resetRaceChart() {
-            pauseRaceChart();
-            currentFrame = 0;
-            drawRaceFrame(0);
+            // Disabled - no animation
         }
-        
+
         function updateSpeed() {
-            const slider = document.getElementById('speedSlider');
-            animationSpeed = parseInt(slider.value);
-            
-            if (isPlaying) {
-                pauseRaceChart();
-                playRaceChart();
-            }
+            // Disabled - no animation
         }
         
         // Initialize race chart when page loads
