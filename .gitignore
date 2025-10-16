@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*_output.ipynb
+*_extracted.py
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.claude/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.log
+nul
+
+# Cell text files (intermediate outputs)
+cell*.txt
+cell*_temp.py
+cell*_new.txt
+
+# Temporary Python scripts (development/fixes)
+fix_*.py
+update_*.py
+apply_*.py
+insert_*.py
+run_cell*.py
+
+# Documentation (temporary summaries)
+*_SUMMARY.md
+*_SUMMARY.txt
+UPDATE_*.txt
+UPDATE_*.md
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project specific - keep only essential scripts
+# Keep: generate_dashboard.py, run_dashboard.py
+# Ignore: all other temporary automation scripts
