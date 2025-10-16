@@ -741,7 +741,7 @@
                             <th onclick="sortTable(this, 8)" data-type="number">Sent</th>
                             <th onclick="sortTable(this, 9)" data-type="number">Buyers</th>
                             <th onclick="sortTable(this, 10)" data-type="number">Conv. %</th>
-                            <th onclick="sortTable(this, 11)" data-type="text">Sales (CHF)</th>
+                            <th onclick="sortTable(this, 11)" data-type="number">Sales (CHF)</th>
                             <th onclick="sortTable(this, 12)" data-type="number">Norm Conv.</th>
                             <th onclick="sortTable(this, 13)" data-type="number">Norm Sales</th>
                             <th onclick="sortTable(this, 14)" data-type="number">Score</th>
@@ -1051,9 +1051,18 @@
                 
                 // Handle different data types
                 if (dataType === 'number') {
-                    // Remove formatting for numbers
-                    valueA = parseFloat(valueA.replace(/[^0-9.-]/g, '')) || 0;
-                    valueB = parseFloat(valueB.replace(/[^0-9.-]/g, '')) || 0;
+                    // Check if cell has data-sort-value attribute (for pre-parsed numbers)
+                    const sortValueA = cellA.getAttribute('data-sort-value');
+                    const sortValueB = cellB.getAttribute('data-sort-value');
+
+                    if (sortValueA !== null && sortValueB !== null) {
+                        valueA = parseFloat(sortValueA) || 0;
+                        valueB = parseFloat(sortValueB) || 0;
+                    } else {
+                        // Remove formatting for numbers (handles Swiss format with apostrophes)
+                        valueA = parseFloat(valueA.replace(/[^0-9.-]/g, '')) || 0;
+                        valueB = parseFloat(valueB.replace(/[^0-9.-]/g, '')) || 0;
+                    }
                     return ascending ? valueA - valueB : valueB - valueA;
                 } else if (dataType === 'date') {
                     valueA = new Date(valueA);
@@ -1085,6 +1094,3 @@
         let isPlaying = false;
         let animationSpeed = 800;
         let animationInterval;
-    </script>
-</body>
-</html>

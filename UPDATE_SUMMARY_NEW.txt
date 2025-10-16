@@ -1,0 +1,31 @@
+=========================================
+DASHBOARD UPDATE SUMMARY - October 16, 2025
+=========================================
+
+FIXES COMPLETED:
+
+1. FIXED: Sales (CHF) Column Sorting Bug
+   - Changed data-type="text" to data-type="number" in Top 25 table header
+   - Sales column now sorts correctly with Swiss number format
+
+2. IMPROVED: Enhanced Sorting Function
+   - Added support for data-sort-value attribute
+   - Better handling of formatted numbers with apostrophes
+
+3. ADDED: Play/Pause Button for Animated GIF
+   - Interactive controls with play/pause icons
+   - Status indicator showing animation state
+   - Styled to match AVU brand colors
+
+FEATURES VERIFIED (Already Present):
+
+4. Producer Names - Confirmed in all tables and race chart
+5. Stock Status Columns - Confirmed in period tables
+6. Stock Status Emoticons - Present with color legend
+
+FILES MODIFIED:
+- dashboard.html (all fixes applied)
+- index.html (copied from dashboard.html)
+- fix_dashboard_bugs.py (automation script)
+
+READY FOR DEPLOYMENT to https://antagata.github.io/AVUwinnersCM/
