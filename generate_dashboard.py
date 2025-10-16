@@ -28,6 +28,15 @@ stock_path = snap_dir / "detailed_stock_list.pkl"
 stock_data = pd.read_pickle(stock_path)
 print(f"🧊 Snapshot rebuilt: detailed_stock_list.pkl  ({stock_data.shape[0]}×{stock_data.shape[1]})")
 
+# 🧊 Import OMT Main Offer List for producer name fallback
+omt_path = snap_dir / "omt_main_offer.pkl"
+if omt_path.exists():
+    omt_data = pd.read_pickle(omt_path)
+    print(f"🧊 Snapshot rebuilt: omt_main_offer.pkl  ({omt_data.shape[0]}×{omt_data.shape[1]})")
+else:
+    omt_data = None
+    print("⚠️ OMT Main Offer List not found - producer fallback unavailable")
+
 print(f"\n✅ Snapshots loaded successfully")
 print(f"📊 Analysis ready: {datetime.now().strftime('%B %d, %Y at %H:%M:%S')}")
 print(f"🎯 All subsequent analyses will use filtered campaign data (excluding Horeca/Trade/Lead)")
@@ -464,12 +473,25 @@ for days, period_name, emoji in periods:
         elif 'Backup_Producer' in period_top.columns and 'Producer_Name' not in period_top.columns:
             # If Producer_Name doesn't exist, create it from backup
             period_top['Producer_Name'] = period_top['Backup_Producer']
-        
+
         # Clean up temporary columns
         if 'Backup_Producer' in period_top.columns:
             period_top = period_top.drop(['Backup_Producer'], axis=1)
         if 'item_id_y' in period_top.columns:
             period_top = period_top.drop(['item_id_y'], axis=1)
+
+    # Additional fallback: Use OMT Main Offer List for missing producers
+    if omt_data is not None and 'Producer_Name' in period_top.columns:
+        # Create OMT producer mapping by Campaign No.
+        omt_producer_map = omt_data.groupby('campaign no.')['producer name'].first().to_dict()
+
+        # Fill missing producers from OMT
+        missing_producers = period_top['Producer_Name'].isna()
+        if missing_producers.any():
+            period_top.loc[missing_producers, 'Producer_Name'] = period_top.loc[missing_producers, 'Campaign_No'].map(omt_producer_map)
+            filled_count = period_top.loc[missing_producers, 'Producer_Name'].notna().sum()
+            if filled_count > 0:
+                print(f"   ✅ Filled {filled_count} missing producer names from OMT Main Offer List")
     
     # Prepare display table with Stock_Status column before Main_Item_No
     display_cols = [
