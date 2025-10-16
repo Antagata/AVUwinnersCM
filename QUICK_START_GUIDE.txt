@@ -1,0 +1,93 @@
+=========================================
+QUICK START GUIDE - Dashboard Updates
+=========================================
+
+HOW TO UPDATE THE WEBSITE WITH FRESH DATA:
+=========================================
+
+STEP 1: Run the Notebook
+-------------------------
+1. Open winners_2.ipynb in Jupyter
+2. Click "Restart Kernel and Run All Cells"
+3. Wait for all cells to complete (may take 1-2 minutes)
+
+STEP 2: Auto-Push to GitHub (CHOOSE ONE METHOD):
+-------------------------------------------------
+
+METHOD A: Run the Auto-Update Script (EASIEST)
+```
+cd "c:\Users\Marco.Africani\Desktop\Winners\winners logic 2"
+python auto_update_and_push.py
+```
+
+METHOD B: Add This Cell to End of Notebook (RUN ONCE)
+```python
+# Auto-push to GitHub Pages
+import subprocess, sys, shutil
+from datetime import datetime
+
+print("\n" + "="*60)
+print("PUSHING UPDATES TO GITHUB PAGES")
+print("="*60)
+
+try:
+    # Apply fixes
+    print("\n[1/3] Applying bug fixes...")
+    subprocess.run([sys.executable, "fix_dashboard_bugs.py"], check=True)
+
+    # Copy to index
+    print("[2/3] Copying to index.html...")
+    shutil.copy2("dashboard.html", "index.html")
+
+    # Git operations
+    print("[3/3] Pushing to GitHub...")
+    subprocess.run(["git", "add", "dashboard.html", "index.html"], check=True)
+
+    timestamp = datetime.now().strftime('%B %d, %Y at %H:%M:%S')
+    commit_msg = f"Update dashboard - {timestamp}\n\n🤖 Auto-generated"
+
+    subprocess.run(["git", "commit", "-m", commit_msg], check=True)
+    subprocess.run(["git", "push", "origin", "master"], check=True, timeout=60)
+
+    print("\n✓ SUCCESS! Website updated: https://antagata.github.io/AVUwinnersCM/")
+    print("(GitHub Pages may take 1-2 minutes to refresh)\n")
+
+except Exception as e:
+    print(f"\n✗ ERROR: {e}")
+    print("You may need to push manually.")
+```
+
+METHOD C: Manual Commands
+```
+cd "c:\Users\Marco.Africani\Desktop\Winners\winners logic 2"
+python fix_dashboard_bugs.py
+cp dashboard.html index.html
+git add dashboard.html index.html
+git commit -m "Update dashboard with latest data"
+git push origin master
+```
+
+=========================================
+TROUBLESHOOTING
+=========================================
+
+Q: Website still shows old data?
+A: 1. Clear browser cache (Ctrl+Shift+R)
+   2. Wait 2-3 minutes for GitHub Pages
+   3. Try incognito mode
+
+Q: Git push fails?
+A: Run: git pull origin master
+   Then try pushing again
+
+=========================================
+WHAT GETS UPDATED
+=========================================
+
+✓ Campaign statistics
+✓ Stock data
+✓ Last Updated timestamp
+✓ All tables and charts
+✓ Performance scores
+
+=========================================
