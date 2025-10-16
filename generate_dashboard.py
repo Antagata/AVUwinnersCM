@@ -1502,7 +1502,15 @@ try:
     
     # Get current timestamp
     current_time = datetime.now().strftime('%B %d, %Y at %H:%M:%S')
-    
+
+    # Load race chart data for animation
+    race_chart_file = historical_dir / "race_chart_data.json"
+    if race_chart_file.exists():
+        with open(race_chart_file, 'r', encoding='utf-8') as f:
+            race_chart_json = f.read()
+    else:
+        race_chart_json = '{{"time_series": []}}'
+
     # Create HTML content
     html_content = f"""
 <!DOCTYPE html>
@@ -1614,7 +1622,7 @@ try:
         .tag-icon {{
             width: 25px;
             height: 25px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
+            background: linear-gradient(135deg, #704214, #8B5A2B);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1908,7 +1916,7 @@ try:
         }}
         
         .period-title {{
-            background: linear-gradient(135deg, #FFD700, #FFA500);
+            background: linear-gradient(135deg, #704214, #8B5A2B);
             color: white;
             text-align: center;
             padding: 15px;
@@ -1930,21 +1938,22 @@ try:
         }}
         
         .winners-table th {{
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #704214, #8B5A2B);
             padding: 6px 4px;
             text-align: left;
             font-weight: bold;
-            color: #333;
-            border-bottom: 2px solid #ddd;
+            color: white;
+            border-bottom: 2px solid #5C3317;
             position: sticky;
             top: 0;
             cursor: pointer;
             user-select: none;
             transition: background-color 0.2s;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }}
-        
+
         .winners-table th:hover {{
-            background: #e9ecef;
+            background: linear-gradient(135deg, #8B5A2B, #704214);
         }}
         
         .winners-table th::after {{
@@ -2028,12 +2037,12 @@ try:
         }}
         
         .top25-table th {{
-            background: linear-gradient(135deg, #FFD700, #FFA500);
+            background: linear-gradient(135deg, #704214, #8B5A2B);
             color: white;
             padding: 8px 6px;
             text-align: left;
             font-weight: bold;
-            border-bottom: 2px solid #B8860B;
+            border-bottom: 2px solid #5C3317;
             position: sticky;
             top: 0;
             cursor: pointer;
@@ -2041,9 +2050,9 @@ try:
             transition: background-color 0.2s;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }}
-        
+
         .top25-table th:hover {{
-            background: linear-gradient(135deg, #FFA500, #FFD700);
+            background: linear-gradient(135deg, #8B5A2B, #704214);
         }}
         
         .top25-table th::after {{
@@ -2121,7 +2130,7 @@ try:
         }}
         
         .race-btn {{
-            background: linear-gradient(135deg, #FFD700, #FFA500);
+            background: linear-gradient(135deg, #704214, #8B5A2B);
             color: #333;
             border: none;
             padding: 10px 20px;
@@ -2133,7 +2142,7 @@ try:
         }}
         
         .race-btn:hover {{
-            background: linear-gradient(135deg, #FFA500, #FFD700);
+            background: linear-gradient(135deg, #8B5A2B, #704214);
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.3);
         }}
@@ -2525,9 +2534,10 @@ try:
                 
                 // Handle different data types
                 if (dataType === 'number') {{
-                    // Remove formatting for numbers
-                    valueA = parseFloat(valueA.replace(/[^0-9.-]/g, '')) || 0;
-                    valueB = parseFloat(valueB.replace(/[^0-9.-]/g, '')) || 0;
+                    // Remove Swiss formatting (apostrophes) and other non-numeric characters
+                    // Handle both Swiss format (82'723.98) and standard format (82723.98)
+                    valueA = parseFloat(valueA.replace(/'/g, '').replace(/[^0-9.-]/g, '')) || 0;
+                    valueB = parseFloat(valueB.replace(/'/g, '').replace(/[^0-9.-]/g, '')) || 0;
                     return ascending ? valueA - valueB : valueB - valueA;
                 }} else if (dataType === 'date') {{
                     valueA = new Date(valueA);
@@ -2559,41 +2569,37 @@ try:
         let isPlaying = false;
         let animationSpeed = 800;
         let animationInterval;
-        
-        // Sample race data (will be populated with actual data)
-        const sampleRaceData = [
-            {{
-                date: "2024-01-01",
-                winners: [
-                    {{"name": "Cos d'Estournel", "score": 0.8638, "color": "#8B5CF6"}},
-                    {{"name": "Siepi", "score": 0.7245, "color": "#F59E0B"}},
-                    {{"name": "Ornellaia", "score": 0.6832, "color": "#3B82F6"}},
-                    {{"name": "Sassicaia", "score": 0.6421, "color": "#EC4899"}},
-                    {{"name": "Tignanello", "score": 0.6105, "color": "#10B981"}}
-                ]
-            }},
-            {{
-                date: "2024-02-01",
-                winners: [
-                    {{"name": "Cos d'Estournel", "score": 0.8745, "color": "#8B5CF6"}},
-                    {{"name": "Ornellaia", "score": 0.7156, "color": "#3B82F6"}},
-                    {{"name": "Siepi", "score": 0.7023, "color": "#F59E0B"}},
-                    {{"name": "Sassicaia", "score": 0.6534, "color": "#EC4899"}},
-                    {{"name": "Tignanello", "score": 0.6278, "color": "#10B981"}}
-                ]
-            }}
-        ];
-        
+
+        // Load actual race chart data from historical data
+        const actualRaceData = {race_chart_json};
+
         function initializeRaceChart() {{
             const canvas = document.getElementById('raceCanvas');
             const ctx = canvas.getContext('2d');
-            
+
             // Set canvas size
             canvas.width = 1200;
             canvas.height = 600;
-            
-            raceData = sampleRaceData; // Use sample data for now
-            drawRaceFrame(0);
+
+            // Convert actual data to expected format
+            if (actualRaceData && actualRaceData.time_series) {{
+                raceData = actualRaceData.time_series.map(snapshot => ({{
+                    date: snapshot.analysis_date || snapshot.date,
+                    winners: snapshot.winners.map(w => ({{
+                        name: w.name,
+                        score: w.value,
+                        color: w.color
+                    }}))
+                }}));
+                console.log('Loaded race data:', raceData.length, 'snapshots');
+            }} else {{
+                console.error('No race chart data available');
+                raceData = [];
+            }}
+
+            if (raceData.length > 0) {{
+                drawRaceFrame(0);
+            }}
         }}
         
         function drawRaceFrame(frameIndex) {{
