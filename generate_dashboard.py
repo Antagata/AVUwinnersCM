@@ -1346,7 +1346,7 @@ try:
             elif col == 'Starting_Date':
                 table_html += '<th onclick="sortTable(this, 7)" data-type="date">Start Date</th>'
             elif col == 'Total_Sales_Amount_LCY':
-                table_html += '<th onclick="sortTable(this, 8)" data-type="number">Sales (CHF)</th>'
+                table_html += '<th onclick="sortTable(this, 8)" data-type="number">Sales</th>'
             elif col == 'Unique_Bought':
                 table_html += '<th onclick="sortTable(this, 9)" data-type="number">Unique Buyers</th>'
             elif col == 'Conversion_Rate_%':
@@ -2263,7 +2263,7 @@ try:
                             <th onclick="sortTable(this, 8)" data-type="number">Sent</th>
                             <th onclick="sortTable(this, 9)" data-type="number">Buyers</th>
                             <th onclick="sortTable(this, 10)" data-type="number">Conv. %</th>
-                            <th onclick="sortTable(this, 11)" data-type="text">Sales (CHF)</th>
+                            <th onclick="sortTable(this, 11)" data-type="number">Sales</th>
                             <th onclick="sortTable(this, 12)" data-type="number">Norm Conv.</th>
                             <th onclick="sortTable(this, 13)" data-type="number">Norm Sales</th>
                             <th onclick="sortTable(this, 14)" data-type="number">Score</th>
@@ -2556,11 +2556,12 @@ try:
             // Re-append sorted rows
             rows.forEach(row => tbody.appendChild(row));
             
-            // Add visual feedback
-            header.style.backgroundColor = '#e9ecef';
+            // Add visual feedback with opacity change (works better with gradients)
+            const originalOpacity = header.style.opacity;
+            header.style.opacity = '0.7';
             setTimeout(() => {{
-                header.style.backgroundColor = '';
-            }}, 200);
+                header.style.opacity = originalOpacity || '1';
+            }}, 150);
         }}
         
         // Race Chart Animation Functionality
